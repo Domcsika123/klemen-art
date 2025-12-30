@@ -460,3 +460,10 @@ input:focus, textarea:focus{
 }
 .formStatus.ok{ color: var(--accent); }
 .formStatus.err{ color: #b00020; }
+
+.fileInfo{
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 14px;
+}

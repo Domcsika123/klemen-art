@@ -206,3 +206,19 @@ if (orderForm) {
   });
 }
 
+// ===== File input feedback =====
+const fileInput = document.querySelector('input[type="file"][name="fajlok"]');
+const fileInfo = document.getElementById("fileInfo");
+
+if (fileInput && fileInfo) {
+  fileInput.addEventListener("change", () => {
+    const files = Array.from(fileInput.files || []);
+    if (!files.length) {
+      fileInfo.textContent = "Nincs kiválasztott fájl";
+      return;
+    }
+    const names = files.slice(0, 3).map(f => f.name);
+    const more = files.length > 3 ? ` +${files.length - 3} további` : "";
+    fileInfo.textContent = `${files.length} fájl kiválasztva: ${names.join(", ")}${more}`;
+  });
+}
