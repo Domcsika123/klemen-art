@@ -604,11 +604,17 @@ input:focus, textarea:focus{
   }
 }
 
-/* Anchor offset for sticky header */
-:root{
-  --header-offset: 140px; /* állítsd: 120-200px között, a te header magasságodtól függ */
+/* Anchor offset for sticky header (mobile ok, desktop fix) */
+html{ scroll-padding-top: 120px; }  /* desktop alap */
+
+#munkak, #rendeles, #kapcsolat, #menet, #top{
+  scroll-margin-top: 120px;
 }
 
-#top, #munkak, #rendeles, #kapcsolat, #menet{
-  scroll-margin-top: var(--header-offset);
+/* Mobile: az előző bevált offset */
+@media (max-width: 680px){
+  html{ scroll-padding-top: 160px; }
+  #munkak, #rendeles, #kapcsolat, #menet, #top{
+    scroll-margin-top: 160px;
+  }
 }
