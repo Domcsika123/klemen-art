@@ -594,7 +594,7 @@ input:focus, textarea:focus{
 
 /* FORCE bigger logo */
 .header .brand .brand__logo{
-  height: 150px !important;
+  height: 120px !important;
   width: auto !important;
 }
 
@@ -602,4 +602,13 @@ input:focus, textarea:focus{
   .header .brand .brand__logo{
     height: 90px !important;
   }
+}
+
+/* Anchor offset for sticky header */
+:root{
+  --header-offset: 140px; /* állítsd: 120-200px között, a te header magasságodtól függ */
+}
+
+#top, #munkak, #rendeles, #kapcsolat, #menet{
+  scroll-margin-top: var(--header-offset);
 }
