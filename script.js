@@ -326,3 +326,14 @@ if (fileInput && fileInfo) {
 
   render();
 })();
+
+// ===== Logo click: go to top =====
+(() => {
+  const logo = document.getElementById("logoTop");
+  if (!logo) return;
+
+  logo.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
