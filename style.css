@@ -572,3 +572,7 @@ input:focus, textarea:focus{
 .miniBtn:hover{
   border-color: rgba(31,111,120,.55);
 }
+
+.brand__logo--solo{
+  height: 52px; /* ha nagyobbat akarsz: 56-60 */
+}
