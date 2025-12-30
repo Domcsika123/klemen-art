@@ -594,7 +594,7 @@ input:focus, textarea:focus{
 
 /* FORCE bigger logo */
 .header .brand .brand__logo{
-  height: 200px !important;
+  height: 150px !important;
   width: auto !important;
 }
 
