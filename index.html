@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Klemen Art – Egyedi festmény</title>
+  <meta name="description" content="Egyedi festmények rendelésre. Galéria, rendelés menete, ajánlatkérés." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="header" id="top">
+    <div class="wrap header__inner">
+      <a class="brand" href="#top" aria-label="Ugrás a tetejére">
+        <img src="assets/Klemen_logo-06.png" alt="Logó" class="brand__logo">
+        <span class="brand__name">Klemen Art</span>
+      </a>
+
+      <nav class="nav" aria-label="Fő navigáció">
+        <a href="#munkak">Munkáim</a>
+        <a href="#rendeles">Rendelés</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero hero--bg" style="--hero-image: url('assets/munka2.jpeg');">
+      <div class="wrap hero__inner">
+        <div class="hero__content">
+          <h1>EGYEDI FESTMÉNY</h1>
+
+          <p>
+            Rendelj egyedi festményt otthonodba, irodádba vagy bármely olyan térbe, ahol sok időt töltesz, és ahol szeretnéd megmutatni a személyiségedet a színek és formák erejével.
+          </p>
+          <p>
+            Minden alkotásomat az egyediség és a személyre szabott vizuális élmény vezérli: olyan képeket készítek, amelyek nemcsak a falat díszítik, hanem harmonikusan illeszkednek a környezetedhez és tükrözik a belső világodat.
+          </p>
+          <p>
+            Legyen szó nyugalmat árasztó árnyalatokról, energikus kompozíciókról vagy letisztult, modern megoldásokról, a célom mindig az, hogy a mű valódi kapcsolatot teremtsen közted és a tér között.
+            Ha szeretnél valami igazán különlegeset, ami csak a tiéd — örömmel megalkotom.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#rendeles">Rendelés</a>
+            <a class="btn btn--ghost" href="#munkak">Munkáim</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MUNKÁK: slider -->
+    <section class="section" id="munkak">
+      <div class="wrap">
+        <h2>EDDIGI MUNKÁIM</h2>
+
+        <div class="slider" id="workSlider" aria-label="Munkák galéria slider">
+          <!-- bal/jobb gomb a két oldalon -->
+          <button class="sliderArrow sliderArrow--left" id="prevBtn" aria-label="Előző">‹</button>
+          <button class="sliderArrow sliderArrow--right" id="nextBtn" aria-label="Következő">›</button>
+
+          <div class="slider__track" id="sliderTrack">
+            <div class="slide tile" data-src="assets/munka1.jpeg"><img src="assets/munka1.jpeg" alt="Festmény 1" loading="lazy"></div>
+            <div class="slide tile" data-src="assets/munka2.jpeg"><img src="assets/munka2.jpeg" alt="Festmény 2" loading="lazy"></div>
+            <div class="slide tile" data-src="assets/munka3.jpeg"><img src="assets/munka3.jpeg" alt="Festmény 3" loading="lazy"></div>
+            <div class="slide tile" data-src="assets/munka4.jpeg"><img src="assets/munka4.jpeg" alt="Festmény 4" loading="lazy"></div>
+          </div>
+        </div>
+
+        <div class="dots" id="dots" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- RENDELÉS MENETE -->
+    <section class="section section--soft" id="menet">
+      <div class="wrap">
+        <h2>RENDELÉS MENETE</h2>
+        <p class="lead">
+          Adj egy részletes leírást, hogy milyen festményt képzeltél el. Színekben, hangulatban, formavilágban, akár stílusban. Sokat segít egy fotó az enetriörről, vagy egy lementett kép, vázlat.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step__num">01</div>
+            <div class="step__body">
+              <h3>Elképzelés</h3>
+              <p>Leírás + inspiráció + enteriőr fotó alapján együtt pontosítjuk a színeket, hangulatot, méretet.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">02</div>
+            <div class="step__body">
+              <h3>Egyeztetés</h3>
+              <p>Átbeszéljük a kompozíciót és a stílust, hogy biztosan a térhez és hozzád illeszkedjen.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">03</div>
+            <div class="step__body">
+              <h3>Alkotás</h3>
+              <p>Az egyeztetés után elkészítem a festményt a megbeszélt hangulatban, gondos kivitelezéssel.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="centerCta">
+          <a class="btn btn--primary" href="#rendeles">Rendelés</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RENDELÉS -->
+    <section class="section" id="rendeles">
+      <div class="wrap">
+        <h2>Rendelés</h2>
+        <p class="lead">Írd le az elképzelésed – és küldj inspirációt vagy enteriőr fotót.</p>
+
+        <form class="form" name="ajanlatkeres" method="POST" data-netlify="true" enctype="multipart/form-data">
+          <input type="hidden" name="form-name" value="ajanlatkeres" />
+
+          <div class="form__block">
+            <label for="elkepzeles" class="label">Pontos elképzelésed</label>
+            <textarea id="elkepzeles" name="elkepzeles" rows="7" required
+              placeholder="Színek, hangulat, stílus, méret, hova kerül…"></textarea>
+
+            <div class="uploadRow">
+              <label class="uploadBtn">
+                Képek feltöltése
+                <input type="file" name="fajlok" accept="image/*" multiple>
+              </label>
+              <span class="hint">Enteriőr fotó + 1–3 inspiráció bőven elég.</span>
+            </div>
+          </div>
+
+          <div class="form__block">
+            <h3 class="subhead">Megrendelő adatai</h3>
+
+            <div class="grid2">
+              <div>
+                <label for="nev" class="label">Név</label>
+                <input id="nev" name="nev" type="text" autocomplete="name" required>
+              </div>
+              <div>
+                <label for="email" class="label">E-mail</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="grid2">
+              <div>
+                <label for="telefon" class="label">Telefon (opcionális)</label>
+                <input id="telefon" name="telefon" type="tel" autocomplete="tel">
+              </div>
+              <div>
+                <label for="meret" class="label">Kívánt méret (opcionális)</label>
+                <input id="meret" name="meret" type="text" placeholder="pl. 60×80 cm">
+              </div>
+            </div>
+
+            <div class="checks">
+              <label class="check">
+                <input type="checkbox" required>
+                <span>Elolvastam és elfogadtam az Adatkezelési tájékoztatóban írtakat!</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" required>
+                <span>Elolvastam és elfogadtam az ÁSZF-ben írtakat!</span>
+              </label>
+            </div>
+
+            <button class="btn btn--primary btn--full" type="submit">Küldés</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Alul kép -->
+    <section id="kapcsolat" class="bottomImg">
+      <img src="assets/unnamed%20(2).png" alt="Elérhetőségek">
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Bezárás">×</button>
+    <img class="lightbox__img" id="lightboxImg" alt="Nagyított kép" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
