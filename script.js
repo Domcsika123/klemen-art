@@ -159,3 +159,50 @@ if (track) {
   updateDots();
   startAuto();
 }
+
+// ===== Formspree AJAX submit (no redirect) =====
+const orderForm = document.getElementById("orderForm");
+const formStatus = document.getElementById("formStatus");
+
+if (orderForm) {
+  orderForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (formStatus) {
+      formStatus.className = "formStatus";
+      formStatus.textContent = "Küldés folyamatban…";
+    }
+
+    try {
+      const data = new FormData(orderForm);
+
+      const res = await fetch(orderForm.action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        orderForm.reset();
+        if (formStatus) {
+          formStatus.className = "formStatus ok";
+          formStatus.textContent = "Köszönöm! Megkaptam az üzenetet, hamarosan jelentkezem.";
+        }
+      } else {
+        const j = await res.json().catch(() => null);
+        if (formStatus) {
+          formStatus.className = "formStatus err";
+          formStatus.textContent = j?.errors?.[0]?.message
+            ? `Hiba: ${j.errors[0].message}`
+            : "Hiba történt a küldésnél. Próbáld meg később.";
+        }
+      }
+    } catch (err) {
+      if (formStatus) {
+        formStatus.className = "formStatus err";
+        formStatus.textContent = "Nem sikerült elküldeni (hálózati hiba). Próbáld újra.";
+      }
+    }
+  });
+}
+

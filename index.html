@@ -56,7 +56,6 @@
         <h2>EDDIGI MUNKÁIM</h2>
 
         <div class="slider" id="workSlider" aria-label="Munkák galéria slider">
-          <!-- bal/jobb gomb a két oldalon -->
           <button class="sliderArrow sliderArrow--left" id="prevBtn" aria-label="Előző">‹</button>
           <button class="sliderArrow sliderArrow--right" id="nextBtn" aria-label="Következő">›</button>
 
@@ -110,14 +109,22 @@
       </div>
     </section>
 
-    <!-- RENDELÉS -->
+    <!-- RENDELÉS (FORMSPREE) -->
     <section class="section" id="rendeles">
       <div class="wrap">
         <h2>Rendelés</h2>
         <p class="lead">Írd le az elképzelésed – és küldj inspirációt vagy enteriőr fotót.</p>
 
-        <form class="form" name="ajanlatkeres" method="POST" data-netlify="true" enctype="multipart/form-data">
-          <input type="hidden" name="form-name" value="ajanlatkeres" />
+        <form
+          class="form"
+          id="orderForm"
+          method="POST"
+          action="https://formspree.io/f/xaqyzodq"
+          enctype="multipart/form-data"
+        >
+          <!-- Subject + honeypot -->
+          <input type="hidden" name="_subject" value="Új festmény rendelés (Klemen Art)" />
+          <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" />
 
           <div class="form__block">
             <label for="elkepzeles" class="label">Pontos elképzelésed</label>
@@ -143,6 +150,7 @@
               </div>
               <div>
                 <label for="email" class="label">E-mail</label>
+                <!-- Formspree szereti, ha van email mező -->
                 <input id="email" name="email" type="email" autocomplete="email" required>
               </div>
             </div>
@@ -160,16 +168,17 @@
 
             <div class="checks">
               <label class="check">
-                <input type="checkbox" required>
+                <input type="checkbox" name="adatkezeles_elfogadva" required>
                 <span>Elolvastam és elfogadtam az Adatkezelési tájékoztatóban írtakat!</span>
               </label>
               <label class="check">
-                <input type="checkbox" required>
+                <input type="checkbox" name="aszf_elfogadva" required>
                 <span>Elolvastam és elfogadtam az ÁSZF-ben írtakat!</span>
               </label>
             </div>
 
             <button class="btn btn--primary btn--full" type="submit">Küldés</button>
+            <p class="formStatus" id="formStatus" aria-live="polite"></p>
           </div>
         </form>
       </div>

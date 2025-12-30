@@ -449,3 +449,14 @@ input:focus, textarea:focus{
     font-size:26px;
   }
 }
+
+/* Formspree helpers */
+.honeypot{ display:none !important; }
+
+.formStatus{
+  margin: 12px 0 0;
+  font-weight: 700;
+  color: var(--muted);
+}
+.formStatus.ok{ color: var(--accent); }
+.formStatus.err{ color: #b00020; }
