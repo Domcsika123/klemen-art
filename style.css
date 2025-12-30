@@ -591,3 +591,15 @@ input:focus, textarea:focus{
     padding: 10px 0; /* hogy ne legyen túl magas a header */
   }
 }
+
+/* FORCE bigger logo */
+.header .brand .brand__logo{
+  height: 78px !important;
+  width: auto !important;
+}
+
+@media (max-width: 680px){
+  .header .brand .brand__logo{
+    height: 90px !important;
+  }
+}
