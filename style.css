@@ -605,16 +605,16 @@ input:focus, textarea:focus{
 }
 
 /* Anchor offset for sticky header (mobile ok, desktop fix) */
-html{ scroll-padding-top: 90px; }  /* desktop alap */
+html{ scroll-padding-top: 70px; }  /* desktop alap */
 
 #munkak, #rendeles, #kapcsolat, #menet, #top{
-  scroll-margin-top: 90px;
+  scroll-margin-top: 70px;
 }
 
 /* Mobile: az előző bevált offset */
 @media (max-width: 680px){
-  html{ scroll-padding-top: 100px; }
+  html{ scroll-padding-top: 80px; }
   #munkak, #rendeles, #kapcsolat, #menet, #top{
-    scroll-margin-top: 100px;
+    scroll-margin-top: 80px;
   }
 }
