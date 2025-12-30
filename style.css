@@ -576,3 +576,18 @@ input:focus, textarea:focus{
 .brand__logo--solo{
   height: 52px; /* ha nagyobbat akarsz: 56-60 */
 }
+
+/* Bigger header logo (solo) */
+.brand__logo{
+  height: 64px;   /* desktop */
+  width: auto;
+}
+
+@media (max-width: 680px){
+  .brand__logo{
+    height: 72px; /* mobile */
+  }
+  .header__inner{
+    padding: 10px 0; /* hogy ne legyen túl magas a header */
+  }
+}
