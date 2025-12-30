@@ -222,3 +222,107 @@ if (fileInput && fileInfo) {
     fileInfo.textContent = `${files.length} fájl kiválasztva: ${names.join(", ")}${more}`;
   });
 }
+
+// ===== File upload: list + remove + clear =====
+(() => {
+  const input = document.getElementById("fajlok");
+  const pane = document.getElementById("filePane");
+  const list = document.getElementById("fileList");
+  const summary = document.getElementById("fileSummary");
+  const clearBtn = document.getElementById("clearFiles");
+
+  if (!input || !pane || !list || !summary || !clearBtn) return;
+
+  let dt = new DataTransfer();
+
+  const keyOf = (f) => `${f.name}|${f.size}|${f.lastModified}`;
+
+  function formatSize(bytes){
+    const kb = bytes / 1024;
+    if (kb < 1024) return `${Math.round(kb)} KB`;
+    const mb = kb / 1024;
+    return `${mb.toFixed(1)} MB`;
+  }
+
+  function syncInput(){
+    input.files = dt.files;
+  }
+
+  function render(){
+    const files = Array.from(dt.files);
+
+    if (!files.length) {
+      pane.hidden = true;
+      list.innerHTML = "";
+      summary.textContent = "";
+      return;
+    }
+
+    pane.hidden = false;
+    summary.textContent = `${files.length} fájl kiválasztva`;
+
+    list.innerHTML = files.map((f) => {
+      const safeName = f.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      return `
+        <li class="fileItem" data-key="${keyOf(f)}">
+          <div class="fileLeft">
+            <span class="fileName" title="${safeName}">${safeName}</span>
+            <span class="fileMeta">${formatSize(f.size)}</span>
+          </div>
+          <button type="button" class="removeBtn" aria-label="Fájl törlése">×</button>
+        </li>
+      `;
+    }).join("");
+  }
+
+  function addFiles(newFiles){
+    const existing = new Set(Array.from(dt.files).map(keyOf));
+
+    for (const f of newFiles) {
+      const k = keyOf(f);
+      if (!existing.has(k)) {
+        dt.items.add(f);
+        existing.add(k);
+      }
+    }
+    syncInput();
+    render();
+  }
+
+  function removeByKey(key){
+    const files = Array.from(dt.files);
+    dt = new DataTransfer();
+    files.forEach(f => {
+      if (keyOf(f) !== key) dt.items.add(f);
+    });
+    syncInput();
+    render();
+  }
+
+  // when user selects files
+  input.addEventListener("change", () => {
+    const picked = Array.from(input.files || []);
+    if (!picked.length) return;
+    addFiles(picked);
+    // reset native picker so selecting same file again works
+    input.value = "";
+  });
+
+  // remove single
+  list.addEventListener("click", (e) => {
+    const btn = e.target.closest(".removeBtn");
+    if (!btn) return;
+    const li = btn.closest(".fileItem");
+    if (!li) return;
+    removeByKey(li.getAttribute("data-key"));
+  });
+
+  // clear all
+  clearBtn.addEventListener("click", () => {
+    dt = new DataTransfer();
+    syncInput();
+    render();
+  });
+
+  render();
+})();
