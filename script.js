@@ -337,3 +337,65 @@ if (fileInput && fileInfo) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 })();
+
+// ===== Hamburger menu =====
+(() => {
+  const toggle = document.getElementById("menuToggle");
+  const nav = document.getElementById("mainNav");
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+    toggle.classList.toggle("open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  nav.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      nav.classList.remove("open");
+      toggle.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+      nav.classList.remove("open");
+      toggle.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
+
+// ===== Gallery tabs =====
+(() => {
+  const tabDescriptions = {
+    festmeny: "önálló alkotások, amelyek karaktert és hangulatot visznek az enteriőrbe",
+    dekorfal: "egyedi, térre hangolt felületek, ahol a fal a tér részévé válik"
+  };
+
+  function switchTab(targetId) {
+    document.querySelectorAll(".tab").forEach(t => {
+      const active = t.getAttribute("data-tab") === targetId;
+      t.classList.toggle("tab--active", active);
+      t.setAttribute("aria-selected", String(active));
+    });
+    document.querySelectorAll(".tab-panel").forEach(p => {
+      p.classList.toggle("tab-panel--active", p.id === "panel-" + targetId);
+    });
+    const desc = document.getElementById("tabDesc");
+    if (desc) desc.textContent = tabDescriptions[targetId] || "";
+  }
+
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => switchTab(tab.getAttribute("data-tab")));
+  });
+
+  // Nav links with data-tab-target switch the tab
+  document.querySelectorAll("[data-tab-target]").forEach(link => {
+    link.addEventListener("click", () => {
+      const target = link.getAttribute("data-tab-target");
+      if (target) switchTab(target);
+    });
+  });
+})();

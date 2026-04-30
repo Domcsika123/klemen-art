@@ -3,8 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Klemen Art – Egyedi festmény</title>
-  <meta name="description" content="Egyedi festmények rendelésre. Galéria, rendelés menete, ajánlatkérés." />
+  <link rel="icon" type="image/png" href="assets/Klemen_logo-06.png">
+  <title>Klemen Art – Egyedi festmény & Dekorfal</title>
+  <meta name="description" content="Egyedi festmények és dekorfalak rendelésre. Galéria, rendelés menete, ajánlatkérés." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,400;1,600&family=Lora:ital,wght@1,400;1,500&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -14,12 +18,20 @@
       <a class="brand" href="#top" id="logoTop" aria-label="Ugrás a tetejére">
         <img src="assets/Klemen_logo-02.png" alt="Klemen Art logó" class="brand__logo brand__logo--solo">
       </a>
-
-      <nav class="nav" aria-label="Fő navigáció">
-        <a href="#munkak">Munkáim</a>
-        <a href="#rendeles">Rendelés</a>
+      <div class="menuWrap">
+        <button class="hamburger" id="menuToggle" aria-label="Menü megnyitása" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="nav" id="mainNav" aria-label="Fő navigáció">
+        <a href="#top">Kezdőlap</a>
+        <a href="#munkak" data-tab-target="festmeny">Festmények</a>
+        <a href="#munkak" data-tab-target="dekorfal">Dekorfalak</a>
+        <a href="#rolam">Rólam</a>
         <a href="#kapcsolat">Kapcsolat</a>
-      </nav>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -28,19 +40,13 @@
     <section class="hero hero--bg" style="--hero-image: url('assets/munka2.jpeg');">
       <div class="wrap hero__inner">
         <div class="hero__content">
-          <h1>EGYEDI FESTMÉNY</h1>
-
-          <p>
-            Rendelj egyedi festményt otthonodba, irodádba vagy bármely olyan térbe, ahol sok időt töltesz, és ahol szeretnéd megmutatni a személyiségedet a színek és formák erejével.
+          <p class="hero__quote">
+            Hiszek abban,<br>
+            hogy a színek és az enteriőr,<br>
+            amelyben élünk,<br>
+            hatással vannak<br>
+            a mindennapjainkra.
           </p>
-          <p>
-            Minden alkotásomat az egyediség és a személyre szabott vizuális élmény vezérli: olyan képeket készítek, amelyek nemcsak a falat díszítik, hanem harmonikusan illeszkednek a környezetedhez és tükrözik a belső világodat.
-          </p>
-          <p>
-            Legyen szó nyugalmat árasztó árnyalatokról, energikus kompozíciókról vagy letisztult, modern megoldásokról, a célom mindig az, hogy a mű valódi kapcsolatot teremtsen közted és a tér között.
-            Ha szeretnél valami igazán különlegeset, ami csak a tiéd — örömmel megalkotom.
-          </p>
-
           <div class="hero__cta">
             <a class="btn btn--primary" href="#rendeles">Rendelés</a>
             <a class="btn btn--ghost" href="#munkak">Munkáim</a>
@@ -49,100 +55,140 @@
       </div>
     </section>
 
-    <!-- MUNKÁK: slider -->
+    <!-- VÁLOGATOTT MUNKÁK -->
     <section class="section" id="munkak">
       <div class="wrap">
-        <h2>EDDIGI MUNKÁIM</h2>
+        <h2>Válogatott munkáim</h2>
+        <p class="section-subtitle">minden felület egy történet – a térhez, a fényekhez és hozzád igazítva</p>
 
-        <div class="slider" id="workSlider" aria-label="Munkák galéria slider">
-          <button class="sliderArrow sliderArrow--left" id="prevBtn" aria-label="Előző">‹</button>
-          <button class="sliderArrow sliderArrow--right" id="nextBtn" aria-label="Következő">›</button>
+        <p class="quality-text">Kizárólag magas minőségű, olasz alapanyagokat használok, amelyek nemcsak tartósak, hanem hosszú távon is megőrzik szépségüket és karakterüket.</p>
 
-          <div class="slider__track" id="sliderTrack">
-            <div class="slide tile" data-src="assets/munka1.jpeg"><img src="assets/munka1.jpeg" alt="Festmény 1" loading="lazy"></div>
-            <div class="slide tile" data-src="assets/munka2.jpeg"><img src="assets/munka2.jpeg" alt="Festmény 2" loading="lazy"></div>
-            <div class="slide tile" data-src="assets/munka3.jpeg"><img src="assets/munka3.jpeg" alt="Festmény 3" loading="lazy"></div>
-            <div class="slide tile" data-src="assets/munka4.jpeg"><img src="assets/munka4.jpeg" alt="Festmény 4" loading="lazy"></div>
+        <div class="tabs" role="tablist">
+          <button class="tab tab--active" role="tab" data-tab="festmeny" aria-selected="true" aria-controls="panel-festmeny">Festmény</button>
+          <button class="tab" role="tab" data-tab="dekorfal" aria-selected="false" aria-controls="panel-dekorfal">Dekorfal</button>
+        </div>
+
+        <p class="tab-desc" id="tabDesc">önálló alkotások, amelyek karaktert és hangulatot visznek az enteriőrbe</p>
+
+        <div class="tab-panel tab-panel--active" id="panel-festmeny" role="tabpanel">
+          <div class="slider" id="workSlider" aria-label="Munkák galéria slider">
+            <button class="sliderArrow sliderArrow--left" id="prevBtn" aria-label="Előző">‹</button>
+            <button class="sliderArrow sliderArrow--right" id="nextBtn" aria-label="Következő">›</button>
+            <div class="slider__track" id="sliderTrack">
+              <div class="slide tile" data-src="assets/munka1.jpeg"><img src="assets/munka1.jpeg" alt="Festmény 1" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/munka2.jpeg"><img src="assets/munka2.jpeg" alt="Festmény 2" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/munka3.jpeg"><img src="assets/munka3.jpeg" alt="Festmény 3" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/munka4.jpeg"><img src="assets/munka4.jpeg" alt="Festmény 4" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="dots" id="dots" aria-hidden="true"></div>
+        </div>
+
+        <div class="tab-panel" id="panel-dekorfal" role="tabpanel">
+          <span id="dekorfalak"></span>
+          <div class="emptyPanel">
+            <p>Hamarosan érkeznek a dekorfal munkák. Nézd meg közben a festmény galériát!</p>
           </div>
         </div>
 
-        <div class="dots" id="dots" aria-hidden="true"></div>
+        <div class="socialCta">
+          <p class="socialCta__text">Nézd meg hogyan kelnek életre a falak, festmények</p>
+          <div class="socialLinks">
+            <a href="https://www.facebook.com/profile.php?id=61557666093794" target="_blank" rel="noopener" class="socialLink" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/klemenjudit/" target="_blank" rel="noopener" class="socialLink" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@klemenart" target="_blank" rel="noopener" class="socialLink" aria-label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- RENDELÉS MENETE -->
     <section class="section section--soft" id="menet">
-      <div class="wrap">
-        <h2>RENDELÉS MENETE</h2>
-        <p class="lead">
-          Adj egy részletes leírást, hogy milyen festményt képzeltél el. Színekben, hangulatban, formavilágban, akár stílusban. Sokat segít egy fotó az enetriörről, vagy egy lementett kép, vázlat.
-        </p>
+      <div class="wrap wrap--narrow">
+        <h2 class="h2--serif-italic">Így születik meg az alkotás</h2>
 
         <div class="steps">
           <div class="step">
             <div class="step__num">01</div>
             <div class="step__body">
-              <h3>Elképzelés</h3>
+              <h3>— elképzelés</h3>
               <p>Leírás + inspiráció + enteriőr fotó alapján együtt pontosítjuk a színeket, hangulatot, méretet.</p>
             </div>
           </div>
           <div class="step">
             <div class="step__num">02</div>
             <div class="step__body">
-              <h3>Egyeztetés</h3>
+              <h3>— egyeztetés</h3>
               <p>Átbeszéljük a kompozíciót és a stílust, hogy biztosan a térhez és hozzád illeszkedjen.</p>
             </div>
           </div>
           <div class="step">
             <div class="step__num">03</div>
             <div class="step__body">
-              <h3>Alkotás</h3>
+              <h3>— alkotás</h3>
               <p>Az egyeztetés után elkészítem a festményt a megbeszélt hangulatban, gondos kivitelezéssel.</p>
             </div>
           </div>
         </div>
 
         <div class="centerCta">
-          <a class="btn btn--primary" href="#rendeles">Rendelés</a>
+          <a class="btn btn--primary" href="#rendeles">kérem az ajánlatot</a>
         </div>
       </div>
     </section>
 
-    <!-- RENDELÉS (FORMSPREE) -->
+    <!-- AJÁNLATKÉRÉS -->
     <section class="section" id="rendeles">
-      <div class="wrap">
-        <h2>Rendelés</h2>
-        <p class="lead">Írd le az elképzelésed – és küldj inspirációt vagy enteriőr fotót.</p>
+      <div class="wrap wrap--narrow">
+        <h2 class="h2--center h2--lower">kérj ajánlatot egyedi falra vagy festményre</h2>
+        <p class="lead lead--center">Meséld el, milyen hangulatot, színeket és világot képzelsz el – egy fotó, vagy inspiráció sokat segít a közös tervezésben.</p>
+
+        <div class="formInfoGrid">
+          <div class="formInfoCard">
+            <span class="formInfoCard__bullet">▪</span>
+            <div>
+              <strong>személyes egyeztetés</strong>
+              <p>A találkozóra teljes színpalettával, mintákkal és inspirációkkal érkezem, hogy közösen alakítsuk ki a számodra tökéletes összhatást.</p>
+            </div>
+          </div>
+          <div class="formInfoCard">
+            <span class="formInfoCard__bullet">▪</span>
+            <div>
+              <strong>kiszállás</strong>
+              <p>Pilisborosjenőről számított 50 km-es körzeten belül a kiszállás díjmentes. 50 km-en túl egységesen 10.000 Ft/alkalom kiszállási díjjal számolok.</p>
+            </div>
+          </div>
+        </div>
 
         <form
           class="form"
           id="orderForm"
           method="POST"
-          action="https://formspree.io/f/xaqyzodq"
+          action="https://formspree.io/f/xeenjyew"
           enctype="multipart/form-data"
         >
-          <!-- Subject + honeypot -->
           <input type="hidden" name="_subject" value="Új festmény rendelés (Klemen Art)" />
 
           <div class="form__block">
-            <label for="elkepzeles" class="label">Pontos elképzelésed</label>
-            <textarea id="elkepzeles" name="elkepzeles" rows="7" required
+            <label for="elkepzeles" class="label">Mesélj a megálmodott hangulatról</label>
+            <textarea id="elkepzeles" name="elkepzeles" rows="6" required
               placeholder="Színek, hangulat, stílus, méret, hova kerül…"></textarea>
 
-            <div class="uploadRow">
-                <label class="uploadBtn" for="fajlok">Képek feltöltése</label>
-                <input class="fileInput" id="fajlok" type="file" name="fajlok" accept="image/*" multiple>
-                <span class="hint">Enteriőr fotó + 1–3 inspiráció bőven elég.</span>
-              </div>
-
-              <div class="filePane" id="filePane" hidden>
-                <div class="filePane__top">
-                  <div class="fileSummary" id="fileSummary"></div>
-                  <button type="button" class="miniBtn" id="clearFiles">Összes törlése</button>
-                </div>
-                <ul class="fileList" id="fileList"></ul>
-              </div>
-
+          </div>
 
           <div class="form__block">
             <h3 class="subhead">Megrendelő adatai</h3>
@@ -154,7 +200,6 @@
               </div>
               <div>
                 <label for="email" class="label">E-mail</label>
-                <!-- Formspree szereti, ha van email mező -->
                 <input id="email" name="email" type="email" autocomplete="email" required>
               </div>
             </div>
@@ -170,17 +215,6 @@
               </div>
             </div>
 
-            <div class="checks">
-              <label class="check">
-                <input type="checkbox" name="adatkezeles_elfogadva" required>
-                <span>Elolvastam és elfogadtam az Adatkezelési tájékoztatóban írtakat!</span>
-              </label>
-              <label class="check">
-                <input type="checkbox" name="aszf_elfogadva" required>
-                <span>Elolvastam és elfogadtam az ÁSZF-ben írtakat!</span>
-              </label>
-            </div>
-
             <button class="btn btn--primary btn--full" type="submit">Küldés</button>
             <p class="formStatus" id="formStatus" aria-live="polite"></p>
           </div>
@@ -188,7 +222,20 @@
       </div>
     </section>
 
-    <!-- Alul kép -->
+    <!-- RÓLAM -->
+    <section class="section section--soft" id="rolam">
+      <div class="wrap wrap--narrow">
+        <h2>Rólam</h2>
+        <div class="about">
+          <p class="about__name">Klemen Judit vagyok.</p>
+          <p>Gyerekkorom óta vonz a művészet és az esztétikus terek világa. Lakberendezőként a falakat nem különálló felületként, hanem a tér szerves részeként látom – ahol a színek, formák és arányok együtt adják meg az otthon hangulatát.</p>
+          <p>Hiszek abban, hogy nem kell mindig nagy lépésekkel változtatni. Egy dekorfal, egy festmény vagy akár egy egyedileg készített panel is képes új életet vinni egy térbe – úgy, hogy közben rugalmasan igazodik a jövőhöz is.</p>
+          <p>Több mint 7 éve foglalkozom dekorfestéssel, és kizárólag magas minőségű, olasz alapanyagokkal dolgozom, amelyek nemcsak tartósak, hanem hosszú távon is megőrzik szépségüket és karakterüket. Alkotásaim megtalálhatók irodákban, pékségekben, szállodákban és stúdiókban – valamint számos otthonban, ahol egyedi hangulatot teremtettem a falakon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alul kép / Kapcsolat -->
     <section id="kapcsolat" class="bottomImg">
       <img src="assets/unnamed%20(2).png" alt="Elérhetőségek">
     </section>
