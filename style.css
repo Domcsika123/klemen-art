@@ -698,19 +698,14 @@ input:focus, textarea:focus{
 /* Anchor offset for sticky header */
 html{ scroll-padding-top: 0; }
 
-#top{ scroll-margin-top: 0; }
-#munkak, #rendeles, #menet, #rolam, #kapcsolat{
-  scroll-margin-top: 96px;
-}
-#dekorfalak{
-  scroll-margin-top: 164px;
+#top, #munkak, #rendeles, #menet, #rolam, #kapcsolat, #dekorfalak{
+  scroll-margin-top: 0;
 }
 
 /* Mobile: az előző bevált offset */
 @media (max-width: 680px){
   html{ scroll-padding-top: 80px; }
-  #munkak, #rendeles, #menet, #rolam, #kapcsolat{ scroll-margin-top: 96px; }
-  #dekorfalak{ scroll-margin-top: 164px; }
+  #top, #munkak, #rendeles, #menet, #rolam, #kapcsolat, #dekorfalak{ scroll-margin-top: 0; }
 }
 
 /* ===== VÁLOGATOTT MUNKÁK ===== */

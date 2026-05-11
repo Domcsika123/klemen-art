@@ -1,3 +1,24 @@
+// ===== Pontos anchor scroll minden linkre =====
+function preciseScrollTo(href) {
+  if (!href || href === "#") return;
+  if (href === "#top") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  const target = document.querySelector(href);
+  if (!target) return;
+  const headerH = document.querySelector(".header").getBoundingClientRect().height;
+  const isSection = target.tagName === "SECTION";
+  const extra = isSection ? 48 : -16;
+  const top = target.getBoundingClientRect().top + window.scrollY - headerH + extra;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  if (a.closest("#mainNav")) return;
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    preciseScrollTo(a.getAttribute("href"));
+  });
+});
+
 // ===== Lightbox (minden .tile elemre) =====
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
@@ -340,16 +361,7 @@ if (fileInput && fileInfo) {
       nav.classList.remove("open");
       toggle.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
-      setTimeout(() => {
-        if (href === "#top") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
-        const target = document.querySelector(href);
-        if (!target) return;
-        const headerH = document.querySelector(".header").getBoundingClientRect().height;
-        const isSection = target.tagName === "SECTION";
-        const extra = isSection ? 48 : -16;
-        const top = target.getBoundingClientRect().top + window.scrollY - headerH + extra;
-        window.scrollTo({ top, behavior: "smooth" });
-      }, 320);
+      setTimeout(() => preciseScrollTo(href), 320);
     });
   });
 
