@@ -15,26 +15,25 @@
       <a class="brand" href="#top" id="logoTop" aria-label="Ugrás a tetejére">
         <img src="assets/Klemen_logo-02.png" alt="Klemen Art logó" class="brand__logo brand__logo--solo">
       </a>
-      <div class="menuWrap">
-        <button class="hamburger" id="menuToggle" aria-label="Menü megnyitása" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav class="nav" id="mainNav" aria-label="Fő navigáció">
-        <a href="#top">Kezdőlap</a>
-        <a href="#munkak" data-tab-target="festmeny">Festmények</a>
-        <a href="#munkak" data-tab-target="dekorfal">Dekorfalak</a>
-        <a href="#rolam">Rólam</a>
-        <a href="#kapcsolat">Kapcsolat</a>
-        </nav>
-      </div>
+      <button class="hamburger" id="menuToggle" aria-label="Menü megnyitása" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+    <nav class="nav" id="mainNav" aria-label="Fő navigáció">
+      <a href="#top">Kezdőlap</a>
+      <a href="#munkak">Festmények</a>
+      <a href="#dekorfalak">Dekorfalak</a>
+      <a href="#rolam">Rólam</a>
+      <a href="#rendeles">Rendelés</a>
+      <a href="#kapcsolat">Kapcsolat</a>
+    </nav>
   </header>
 
   <main>
     <!-- HERO -->
-    <section class="hero hero--bg" style="--hero-image: url('assets/munka2.jpeg');">
+    <section class="hero hero--bg" style="--hero-image: url('assets/hero.jpg');">
       <div class="wrap hero__inner">
         <div class="hero__content">
           <p class="hero__quote">
@@ -60,33 +59,90 @@
 
         <p class="quality-text">Kizárólag magas minőségű, olasz alapanyagokat használok, amelyek nemcsak tartósak, hanem hosszú távon is megőrzik szépségüket és karakterüket.</p>
 
-        <div class="tabs" role="tablist">
-          <button class="tab tab--active" role="tab" data-tab="festmeny" aria-selected="true" aria-controls="panel-festmeny">Festmény</button>
-          <button class="tab" role="tab" data-tab="dekorfal" aria-selected="false" aria-controls="panel-dekorfal">Dekorfal</button>
-        </div>
-
-        <p class="tab-desc" id="tabDesc">önálló alkotások, amelyek karaktert és hangulatot visznek az enteriőrbe</p>
-
-        <div class="tab-panel tab-panel--active" id="panel-festmeny" role="tabpanel">
-          <div class="slider" id="workSlider" aria-label="Munkák galéria slider">
+        <div class="gallery-group">
+          <h3 class="gallery-title">festmények</h3>
+          <p class="gallery-desc">önálló alkotások, amelyek karaktert és hangulatot visznek az enteriőrbe</p>
+          <div class="slider" id="workSlider" aria-label="Festmények galéria slider">
             <button class="sliderArrow sliderArrow--left" id="prevBtn" aria-label="Előző">‹</button>
             <button class="sliderArrow sliderArrow--right" id="nextBtn" aria-label="Következő">›</button>
             <div class="slider__track" id="sliderTrack">
-              <div class="slide tile" data-src="assets/munka1.jpeg"><img src="assets/munka1.jpeg" alt="Festmény 1" loading="lazy"></div>
-              <div class="slide tile" data-src="assets/munka2.jpeg"><img src="assets/munka2.jpeg" alt="Festmény 2" loading="lazy"></div>
-              <div class="slide tile" data-src="assets/munka3.jpeg"><img src="assets/munka3.jpeg" alt="Festmény 3" loading="lazy"></div>
-              <div class="slide tile" data-src="assets/munka4.jpeg"><img src="assets/munka4.jpeg" alt="Festmény 4" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/20250919_101244.jpg"><img src="assets/festmenyek/20250919_101244.jpg" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/ED7A0799.jpg"><img src="assets/festmenyek/ED7A0799.jpg" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/ED7A1290.jpg"><img src="assets/festmenyek/ED7A1290.jpg" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/ED7A1311.jpg"><img src="assets/festmenyek/ED7A1311.jpg" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/ED7A1312.jpg"><img src="assets/festmenyek/ED7A1312.jpg" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/FB_IMG_1755720224879.jpg"><img src="assets/festmenyek/FB_IMG_1755720224879.jpg" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000a20471f4993cfa26425b4f48.png"><img src="assets/festmenyek/file_00000000a20471f4993cfa26425b4f48.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000abf0720a93838fb66562df09.png"><img src="assets/festmenyek/file_00000000abf0720a93838fb66562df09.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000eaf071f4b83197098f038dc1.png"><img src="assets/festmenyek/file_00000000eaf071f4b83197098f038dc1.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000eb9871f4b295fdefe3704230.png"><img src="assets/festmenyek/file_00000000eb9871f4b295fdefe3704230.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000f54471f4b6cb7666354732c8.png"><img src="assets/festmenyek/file_00000000f54471f4b6cb7666354732c8.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_0000000097e471f4a4a25e9224082ea7.png"><img src="assets/festmenyek/file_0000000097e471f4a4a25e9224082ea7.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000363c71f491086a1573455095.png"><img src="assets/festmenyek/file_00000000363c71f491086a1573455095.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000773c71f48457b32edf890f07.png"><img src="assets/festmenyek/file_00000000773c71f48457b32edf890f07.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000520471f4bdeb5a20e15afdf1.png"><img src="assets/festmenyek/file_00000000520471f4bdeb5a20e15afdf1.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000631071f4a6b90d2ca3497ea4.png"><img src="assets/festmenyek/file_00000000631071f4a6b90d2ca3497ea4.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_00000000978071f4b5c69de112945508.png"><img src="assets/festmenyek/file_00000000978071f4b5c69de112945508.png" alt="Festmény" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/festmenyek/file_000000004700720a971d19fc28927a95.png"><img src="assets/festmenyek/file_000000004700720a971d19fc28927a95.png" alt="Festmény" loading="lazy"></div>
             </div>
           </div>
           <div class="dots" id="dots" aria-hidden="true"></div>
         </div>
 
-        <div class="tab-panel" id="panel-dekorfal" role="tabpanel">
-          <span id="dekorfalak"></span>
-          <div class="emptyPanel">
-            <p>Hamarosan érkeznek a dekorfal munkák. Nézd meg közben a festmény galériát!</p>
+        <div class="gallery-group" id="dekorfalak">
+          <h3 class="gallery-title">dekorfalak</h3>
+          <p class="gallery-desc">egyedi, térre hangolt felületek, ahol a fal a tér részévé válik</p>
+          <div class="slider" id="dekorSlider" aria-label="Dekorfalak galéria slider">
+            <button class="sliderArrow sliderArrow--left" id="dekorPrev" aria-label="Előző">‹</button>
+            <button class="sliderArrow sliderArrow--right" id="dekorNext" aria-label="Következő">›</button>
+            <div class="slider__track" id="dekorTrack">
+              <div class="slide tile" data-src="assets/dekorfalak/0.jpg"><img src="assets/dekorfalak/0.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/1.jpg"><img src="assets/dekorfalak/1.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/3.jpg"><img src="assets/dekorfalak/3.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/4.jpg"><img src="assets/dekorfalak/4.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/4.5.jpg"><img src="assets/dekorfalak/4.5.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/4.8.jpg"><img src="assets/dekorfalak/4.8.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/5.jpg"><img src="assets/dekorfalak/5.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/6.jpg"><img src="assets/dekorfalak/6.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/7.jpg"><img src="assets/dekorfalak/7.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/8.jpg"><img src="assets/dekorfalak/8.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/9.jpg"><img src="assets/dekorfalak/9.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/10.jpg"><img src="assets/dekorfalak/10.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/11.jpg"><img src="assets/dekorfalak/11.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/12.jpg"><img src="assets/dekorfalak/12.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/13.jpg"><img src="assets/dekorfalak/13.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/14.jpg"><img src="assets/dekorfalak/14.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/15.jpg"><img src="assets/dekorfalak/15.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/17.jpg"><img src="assets/dekorfalak/17.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/18.jpg"><img src="assets/dekorfalak/18.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/468140459_1071231331076168_6654861795227773058_n.jpg"><img src="assets/dekorfalak/468140459_1071231331076168_6654861795227773058_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/468291495_1071231581076143_1212926452460210264_n.jpg"><img src="assets/dekorfalak/468291495_1071231581076143_1212926452460210264_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/470579647_1087260139473287_4735483754059347472_n.jpg"><img src="assets/dekorfalak/470579647_1087260139473287_4735483754059347472_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/470592646_1087272666138701_1726746872537973201_n.jpg"><img src="assets/dekorfalak/470592646_1087272666138701_1726746872537973201_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/472537945_1100465601486074_5647812974530368677_n.jpg"><img src="assets/dekorfalak/472537945_1100465601486074_5647812974530368677_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/472709956_1101151004750867_7938860315140450329_n.jpg"><img src="assets/dekorfalak/472709956_1101151004750867_7938860315140450329_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/472715200_1101150984750869_3888877731619081696_n.jpg"><img src="assets/dekorfalak/472715200_1101150984750869_3888877731619081696_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/472792843_1101159641416670_4353976662362869346_n.jpg"><img src="assets/dekorfalak/472792843_1101159641416670_4353976662362869346_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/473051235_1101155151417119_3812436188126354184_n.jpg"><img src="assets/dekorfalak/473051235_1101155151417119_3812436188126354184_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/473056283_1101154881417146_5564338379327086772_n.jpg"><img src="assets/dekorfalak/473056283_1101154881417146_5564338379327086772_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/473080442_1101159431416691_2692856087492342753_n.jpg"><img src="assets/dekorfalak/473080442_1101159431416691_2692856087492342753_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/198389897_316846803181295_8727244822060478888_n.jpg"><img src="assets/dekorfalak/198389897_316846803181295_8727244822060478888_n.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/FB_IMG_1738267367114.jpg"><img src="assets/dekorfalak/FB_IMG_1738267367114.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/FB_IMG_1744869581688.jpg"><img src="assets/dekorfalak/FB_IMG_1744869581688.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/FB_IMG_1744869909697.jpg"><img src="assets/dekorfalak/FB_IMG_1744869909697.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/FB_IMG_1748661997546.jpg"><img src="assets/dekorfalak/FB_IMG_1748661997546.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/20250529_141442.jpg"><img src="assets/dekorfalak/20250529_141442.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/20250602_161713.jpg"><img src="assets/dekorfalak/20250602_161713.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/20260506_142734.jpg"><img src="assets/dekorfalak/20260506_142734.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/20260507_151747.jpg"><img src="assets/dekorfalak/20260507_151747.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/dekorfal.png"><img src="assets/dekorfalak/dekorfal.png" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/egyedi-dekorfal5-e1576613411832.jpg"><img src="assets/dekorfalak/egyedi-dekorfal5-e1576613411832.jpg" alt="Dekorfal" loading="lazy"></div>
+              <div class="slide tile" data-src="assets/dekorfalak/file_000000004a7c71f490f732e2444fb493.png"><img src="assets/dekorfalak/file_000000004a7c71f490f732e2444fb493.png" alt="Dekorfal" loading="lazy"></div>
+            </div>
           </div>
+          <div class="dots" id="dekorDots" aria-hidden="true"></div>
         </div>
+
 
         <div class="socialCta">
           <p class="socialCta__text">Nézd meg hogyan kelnek életre a falak, festmények</p>
@@ -115,35 +171,38 @@
 
     <!-- RENDELÉS MENETE -->
     <section class="section section--soft" id="menet">
-      <div class="wrap wrap--narrow">
-        <h2 class="h2--serif-italic">Így születik meg az alkotás</h2>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step__num">01</div>
-            <div class="step__body">
-              <h3>— elképzelés</h3>
-              <p>Leírás + inspiráció + enteriőr fotó alapján együtt pontosítjuk a színeket, hangulatot, méretet.</p>
+      <div class="wrap">
+        <div class="menet-layout">
+          <img src="assets/igyszuletik.jpg" alt="Így születik meg az alkotás" class="menet-img">
+          <div class="menet-content">
+            <h2 class="h2--serif-italic">Így születik meg az alkotás</h2>
+            <div class="steps">
+              <div class="step">
+                <div class="step__num">01</div>
+                <div class="step__body">
+                  <h3>— elképzelés</h3>
+                  <p>Leírás + inspiráció + enteriőr fotó alapján együtt pontosítjuk a színeket, hangulatot, méretet.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step__num">02</div>
+                <div class="step__body">
+                  <h3>— egyeztetés</h3>
+                  <p>Átbeszéljük a kompozíciót és a stílust, hogy biztosan a térhez és hozzád illeszkedjen.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step__num">03</div>
+                <div class="step__body">
+                  <h3>— alkotás</h3>
+                  <p>Az egyeztetés után elkészítem a festményt a megbeszélt hangulatban, gondos kivitelezéssel.</p>
+                </div>
+              </div>
+            </div>
+            <div class="centerCta">
+              <a class="btn btn--primary" href="#rendeles">kérem az ajánlatot</a>
             </div>
           </div>
-          <div class="step">
-            <div class="step__num">02</div>
-            <div class="step__body">
-              <h3>— egyeztetés</h3>
-              <p>Átbeszéljük a kompozíciót és a stílust, hogy biztosan a térhez és hozzád illeszkedjen.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step__num">03</div>
-            <div class="step__body">
-              <h3>— alkotás</h3>
-              <p>Az egyeztetés után elkészítem a festményt a megbeszélt hangulatban, gondos kivitelezéssel.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="centerCta">
-          <a class="btn btn--primary" href="#rendeles">kérem az ajánlatot</a>
         </div>
       </div>
     </section>
@@ -221,13 +280,17 @@
 
     <!-- RÓLAM -->
     <section class="section section--soft" id="rolam">
-      <div class="wrap wrap--narrow">
-        <h2>Rólam</h2>
-        <div class="about">
+      <div class="wrap">
+        <div class="about-layout">
+          <img src="assets/rolam.jpg" alt="Klemen Judit" class="about-img">
+          <div class="about">
+          <h2 class="h2--center" style="margin-bottom:16px;">Rólam</h2>
           <p class="about__name">Klemen Judit vagyok.</p>
           <p>Gyerekkorom óta vonz a művészet és az esztétikus terek világa. Lakberendezőként a falakat nem különálló felületként, hanem a tér szerves részeként látom – ahol a színek, formák és arányok együtt adják meg az otthon hangulatát.</p>
           <p>Hiszek abban, hogy nem kell mindig nagy lépésekkel változtatni. Egy dekorfal, egy festmény vagy akár egy egyedileg készített panel is képes új életet vinni egy térbe – úgy, hogy közben rugalmasan igazodik a jövőhöz is.</p>
           <p>Több mint 7 éve foglalkozom dekorfestéssel, és kizárólag magas minőségű, olasz alapanyagokkal dolgozom, amelyek nemcsak tartósak, hanem hosszú távon is megőrzik szépségüket és karakterüket. Alkotásaim megtalálhatók irodákban, pékségekben, szállodákban és stúdiókban – valamint számos otthonban, ahol egyedi hangulatot teremtettem a falakon.</p>
+          </div>
+          <div class="about-spacer"></div>
         </div>
       </div>
     </section>

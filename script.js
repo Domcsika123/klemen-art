@@ -33,32 +33,22 @@ window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeLightbox();
 });
 
-// ===== Slider (auto + prev/next + drag) =====
-const slider = document.getElementById("workSlider");
-const track = document.getElementById("sliderTrack");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const dotsWrap = document.getElementById("dots");
-
-if (track) {
-  const slides = Array.from(track.querySelectorAll(".slide"));
+// ===== Slider factory =====
+function initSlider(sliderEl, trackEl, prevBtnEl, nextBtnEl, dotsEl) {
+  if (!trackEl) return;
+  const slides = Array.from(trackEl.querySelectorAll(".slide"));
   const AUTO_MS = 6500;
 
-  // Dots (one per slide)
-  if (dotsWrap) {
-    dotsWrap.innerHTML = slides.map((_, i) => `<span class="dot" data-i="${i}"></span>`).join("");
+  if (dotsEl) {
+    dotsEl.innerHTML = slides.map((_, i) => `<span class="dot" data-i="${i}"></span>`).join("");
   }
-  const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll(".dot")) : [];
+  const dots = dotsEl ? Array.from(dotsEl.querySelectorAll(".dot")) : [];
 
-  function getSlideLeft(i){
-    // slide offsetLeft relative to track padding
-    return slides[i].offsetLeft - 12; // track padding
-  }
+  function getSlideLeft(i) { return slides[i].offsetLeft - 12; }
 
-  function nearestSlideIndex(){
-    const x = track.scrollLeft + 1; // bias
-    let bestI = 0;
-    let bestD = Infinity;
+  function nearestSlideIndex() {
+    const x = trackEl.scrollLeft + 1;
+    let bestI = 0, bestD = Infinity;
     slides.forEach((s, i) => {
       const d = Math.abs((s.offsetLeft - 12) - x);
       if (d < bestD) { bestD = d; bestI = i; }
@@ -66,31 +56,35 @@ if (track) {
     return bestI;
   }
 
-  function updateDots(){
-    const i = nearestSlideIndex();
-    dots.forEach(d => d.classList.remove("active"));
-    if (dots[i]) dots[i].classList.add("active");
+  const MAX_DOTS = 5;
+  function updateDots() {
+    const current = nearestSlideIndex();
+    const total = slides.length;
+    let winStart = Math.max(0, current - Math.floor(MAX_DOTS / 2));
+    let winEnd = winStart + MAX_DOTS - 1;
+    if (winEnd >= total) { winEnd = total - 1; winStart = Math.max(0, winEnd - MAX_DOTS + 1); }
+    dots.forEach((d, i) => {
+      d.classList.toggle("active", i === current);
+      d.classList.toggle("dot--visible", i >= winStart && i <= winEnd);
+    });
   }
 
-  function scrollToIndex(i){
+  function scrollToIndex(i) {
     const idx = (i + slides.length) % slides.length;
-    track.scrollTo({ left: getSlideLeft(idx), behavior: "smooth" });
+    trackEl.scrollTo({ left: getSlideLeft(idx), behavior: "smooth" });
     setTimeout(updateDots, 250);
   }
 
-  function next(){
-    const i = nearestSlideIndex();
-    scrollToIndex(i + 1);
-  }
-  function prev(){
-    const i = nearestSlideIndex();
-    scrollToIndex(i - 1);
-  }
+  function next() { scrollToIndex(nearestSlideIndex() + 1); }
+  function prev() { scrollToIndex(nearestSlideIndex() - 1); }
 
-  prevBtn?.addEventListener("click", () => { stopAuto(); prev(); startAuto(); });
-  nextBtn?.addEventListener("click", () => { stopAuto(); next(); startAuto(); });
+  let timer = null;
+  function startAuto() { if (!timer) timer = setInterval(next, AUTO_MS); }
+  function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
 
-  // Dots click
+  prevBtnEl?.addEventListener("click", () => { stopAuto(); prev(); startAuto(); });
+  nextBtnEl?.addEventListener("click", () => { stopAuto(); next(); startAuto(); });
+
   dots.forEach(d => {
     d.addEventListener("click", () => {
       stopAuto();
@@ -99,66 +93,55 @@ if (track) {
     });
   });
 
-  // Auto
-  let timer = null;
-  function startAuto(){
-    if (timer) return;
-    timer = setInterval(next, AUTO_MS);
-  }
-  function stopAuto(){
-    if (!timer) return;
-    clearInterval(timer);
-    timer = null;
-  }
+  sliderEl?.addEventListener("mouseenter", stopAuto);
+  sliderEl?.addEventListener("mouseleave", startAuto);
 
-  // Pause on hover (desktop)
-  slider?.addEventListener("mouseenter", stopAuto);
-  slider?.addEventListener("mouseleave", startAuto);
-
-  // Drag to scroll
-  let isDown = false;
-  let startX = 0;
-  let startScroll = 0;
-
-  function onDown(e){
-    isDown = true;
-    track.classList.add("grabbing");
-    stopAuto();
-    startX = (e.touches ? e.touches[0].pageX : e.pageX);
-    startScroll = track.scrollLeft;
+  // Desktop drag only — touch uses native CSS scroll-snap
+  let isDown = false, startX = 0, startScroll = 0, rafId = null;
+  function onDown(e) {
+    isDown = true; trackEl.classList.add("grabbing"); stopAuto();
+    startX = e.pageX;
+    startScroll = trackEl.scrollLeft;
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
   }
-  function onMove(e){
+  function onMove(e) {
     if (!isDown) return;
-    const x = (e.touches ? e.touches[0].pageX : e.pageX);
-    const dx = x - startX;
-    track.scrollLeft = startScroll - dx;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      trackEl.scrollLeft = startScroll - (e.pageX - startX);
+    });
   }
-  function onUp(){
+  function onUp() {
     if (!isDown) return;
-    isDown = false;
-    track.classList.remove("grabbing");
-    // Snap to nearest
-    scrollToIndex(nearestSlideIndex());
-    startAuto();
+    isDown = false; trackEl.classList.remove("grabbing");
+    window.removeEventListener("mousemove", onMove);
+    window.removeEventListener("mouseup", onUp);
+    scrollToIndex(nearestSlideIndex()); startAuto();
   }
 
-  track.addEventListener("mousedown", onDown);
-  window.addEventListener("mousemove", onMove);
-  window.addEventListener("mouseup", onUp);
+  trackEl.addEventListener("mousedown", onDown);
+  trackEl.addEventListener("scroll", updateDots);
 
-  track.addEventListener("touchstart", onDown, { passive: true });
-  track.addEventListener("touchmove", onMove, { passive: true });
-  track.addEventListener("touchend", onUp);
-
-  track.addEventListener("scroll", () => {
-    // keep dots in sync
-    updateDots();
-  });
-
-  // Init
   updateDots();
   startAuto();
 }
+
+initSlider(
+  document.getElementById("workSlider"),
+  document.getElementById("sliderTrack"),
+  document.getElementById("prevBtn"),
+  document.getElementById("nextBtn"),
+  document.getElementById("dots")
+);
+
+initSlider(
+  document.getElementById("dekorSlider"),
+  document.getElementById("dekorTrack"),
+  document.getElementById("dekorPrev"),
+  document.getElementById("dekorNext"),
+  document.getElementById("dekorDots")
+);
 
 // ===== Formspree AJAX submit (no redirect) =====
 const orderForm = document.getElementById("orderForm");
@@ -351,10 +334,22 @@ if (fileInput && fileInfo) {
   });
 
   nav.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const href = a.getAttribute("href");
       nav.classList.remove("open");
       toggle.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
+      setTimeout(() => {
+        if (href === "#top") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+        const target = document.querySelector(href);
+        if (!target) return;
+        const headerH = document.querySelector(".header").getBoundingClientRect().height;
+        const isSection = target.tagName === "SECTION";
+        const extra = isSection ? 48 : -16;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerH + extra;
+        window.scrollTo({ top, behavior: "smooth" });
+      }, 320);
     });
   });
 
