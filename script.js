@@ -2,7 +2,7 @@
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   if (!loader) return;
-  setTimeout(() => loader.classList.add('hidden'), 2200);
+  setTimeout(() => loader.classList.add('hidden'), 2700);
 });
 
 // ===== Pontos anchor scroll minden linkre =====

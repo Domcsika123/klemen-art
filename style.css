@@ -33,11 +33,11 @@
   visibility:hidden;
 }
 .loader__logo{
-  height:100px;
+  height:160px;
   width:auto;
 }
 .loader__bar{
-  width:180px;
+  width:280px;
   height:2px;
   background:rgba(21,19,16,.12);
   border-radius:999px;
@@ -48,7 +48,7 @@
   width:0%;
   background:var(--accent);
   border-radius:999px;
-  animation:loaderFill 2s cubic-bezier(.4,0,.2,1) forwards;
+  animation:loaderFill 2.5s linear forwards;
 }
 @keyframes loaderFill{
   0%{ width:0%; }
