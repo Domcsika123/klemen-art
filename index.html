@@ -15,7 +15,8 @@
     .loader__fill{height:100%;width:100%;background:#185f67;border-radius:999px;transform:scaleX(0);transform-origin:left center;animation:loaderFill 2.5s linear forwards;}
     @keyframes loaderFill{0%{transform:scaleX(0);}100%{transform:scaleX(1);}}
   </style>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="style.css"></noscript>
 </head>
 
 <body>
