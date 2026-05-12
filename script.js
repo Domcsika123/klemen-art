@@ -19,39 +19,59 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ===== Lightbox (minden .tile elemre) =====
+// ===== Lightbox navigációval =====
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 const lightboxClose = document.getElementById("lightboxClose");
+const lightboxPrev = document.getElementById("lightboxPrev");
+const lightboxNext = document.getElementById("lightboxNext");
 
-function openLightbox(src){
-  if (!lightbox || !lightboxImg) return;
-  lightboxImg.src = src;
+let currentGallery = [];
+let currentIndex = 0;
+
+function openLightbox(tiles, index) {
+  currentGallery = tiles;
+  currentIndex = index;
+  showLightboxImage();
   lightbox.classList.add("open");
   lightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
 }
 
-function closeLightbox(){
+function showLightboxImage() {
+  if (!lightboxImg || !currentGallery.length) return;
+  lightboxImg.src = currentGallery[currentIndex].getAttribute("data-src");
+}
+
+function closeLightbox() {
   if (!lightbox) return;
   lightbox.classList.remove("open");
   lightbox.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
 
-document.querySelectorAll(".tile").forEach(tile => {
-  tile.addEventListener("click", () => {
-    const src = tile.getAttribute("data-src");
-    if (src) openLightbox(src);
+function lightboxNavigate(dir) {
+  currentIndex = (currentIndex + dir + currentGallery.length) % currentGallery.length;
+  showLightboxImage();
+}
+
+document.querySelectorAll(".slider").forEach(slider => {
+  const tiles = Array.from(slider.querySelectorAll(".tile"));
+  tiles.forEach((tile, i) => {
+    tile.addEventListener("click", () => openLightbox(tiles, i));
   });
 });
 
 lightboxClose?.addEventListener("click", closeLightbox);
+lightboxPrev?.addEventListener("click", () => lightboxNavigate(-1));
+lightboxNext?.addEventListener("click", () => lightboxNavigate(1));
 lightbox?.addEventListener("click", (e) => {
   if (e.target === lightbox) closeLightbox();
 });
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowLeft") lightboxNavigate(-1);
+  if (e.key === "ArrowRight") lightboxNavigate(1);
 });
 
 // ===== Slider factory =====
@@ -162,6 +182,14 @@ initSlider(
   document.getElementById("dekorPrev"),
   document.getElementById("dekorNext"),
   document.getElementById("dekorDots")
+);
+
+initSlider(
+  document.getElementById("eletrekelSlider"),
+  document.getElementById("eletrekelTrack"),
+  document.getElementById("eletrekelPrev"),
+  document.getElementById("eletrekelNext"),
+  document.getElementById("eletrekelDots")
 );
 
 // ===== Formspree AJAX submit (no redirect) =====
