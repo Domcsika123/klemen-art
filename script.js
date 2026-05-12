@@ -1,3 +1,10 @@
+// ===== Loading screen =====
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  if (!loader) return;
+  setTimeout(() => loader.classList.add('hidden'), 2200);
+});
+
 // ===== Pontos anchor scroll minden linkre =====
 function preciseScrollTo(href) {
   if (!href || href === "#") return;
